@@ -3,6 +3,7 @@ import java.lang.StringBuilder
 import java.math.BigInteger
 import java.security.MessageDigest
 import java.util.*
+import kotlin.math.max
 import kotlin.math.pow
 
 const val password0="abc"
@@ -25,29 +26,45 @@ fun main() {
 
     var foundIt = false
     if(!foundIt)
-        foundIt = searchMethodThree(file)
+        foundIt = searchMethodThreePlusOnePlus(file, 1)
     if(!foundIt)
-        foundIt = searchMethodFour(file)
+        foundIt = searchMethodThreePlusOnePlus(file, 2)
     if(!foundIt)
-        foundIt = searchMethodOne(1)
+        foundIt = searchMethodThreePlusOnePlus(file, 3)
     if(!foundIt)
-        foundIt = searchMethodOne(2)
+        foundIt = searchMethodThreePlusOnePlus(file, 4)
     if(!foundIt)
-        foundIt = searchMethodOne(3)
+        foundIt = searchMethodThreePlusOnePlus(file, 5)
     if(!foundIt)
-        foundIt = searchMethodOne(4)
+        foundIt = searchMethodThreePlusOnePlus(file, 6)
     if(!foundIt)
-        foundIt = searchMethodTwo(6)
+        foundIt = searchMethodThreePlusOnePlus(file, 7)
     if(!foundIt)
-        foundIt = searchMethodOne(7)
-    if(!foundIt)
-        foundIt = searchMethodOne(8)
-    if(!foundIt)
-        foundIt = searchMethodThreePlus(file)
-    if(!foundIt)
-        foundIt = searchMethodFourPlus(file)
-    if(!foundIt)
-        foundIt = searchMethodTwoPlus(6)
+        foundIt = searchMethodThreePlusOnePlus(file, 8)
+//    if(!foundIt)
+//        foundIt = searchMethodThree(file)
+//    if(!foundIt)
+//        foundIt = searchMethodFour(file)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(1)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(2)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(3)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(4)
+//    if(!foundIt)
+//        foundIt = searchMethodTwo(6)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(7)
+//    if(!foundIt)
+//        foundIt = searchMethodOne(8)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlus(file)
+//    if(!foundIt)
+//        foundIt = searchMethodFourPlus(file)
+//    if(!foundIt)
+//        foundIt = searchMethodTwoPlus(6)
 
 
 
@@ -623,5 +640,69 @@ fun searchMethodFourPlus(file: File): Boolean{
     println("Time to search was: ${searchTime/1000/60} minutes ${searchTime/1000%60} seconds")
     println("Time in milliseconds: $searchTime")
 
+    return result
+}
+
+fun searchMethodThreePlusOnePlus (file: File, numDigets: Int): Boolean {
+    var result = false
+
+    val words = file.bufferedReader().readLines()
+
+    val start = System.currentTimeMillis()
+    var stillSearching = true
+    var numTests = 0
+    var wordCount = 0
+    var guess: String
+
+    val maxNum = 10.toDouble().pow(numDigets).toInt()
+    var a = 0
+
+    while (stillSearching && a< maxNum){
+        guess = words[wordCount] + a.toString().leadingZeros(numDigets)
+        println(guess)
+
+        when{
+            checkUserPassword(guess.capitalize()) -> {
+                println("Method 3 capitalize Success! Password $whichPassword is ${guess.capitalize()}")
+                stillSearching = false
+                result = true
+            }
+            checkUserPassword(guess.toUpperCase()) -> {
+                println("Method 3 All caps Success! Password $whichPassword is ${guess.toUpperCase()}")
+                stillSearching = false
+                result = true
+            }
+            checkUserPassword(guess.camelCase()) -> {
+                println("Method 3 camelcase Success! Password $whichPassword is ${guess.camelCase()}")
+                stillSearching = false
+                result = true
+            }
+            checkUserPassword(guess.reversed()) -> {
+                println("Method 3 reversed Success! Password $whichPassword is ${guess.reversed()}")
+                stillSearching = false
+                result = true
+            }
+        }
+
+        a+=1
+        numTests+= 1
+        totalGuesses+=1
+//        wordCount+=1
+//        if(wordCount >= words.size)
+//            stillSearching = false
+
+        if(a==maxNum && wordCount<words.size-1){
+            wordCount+=1
+            a=0
+        }else if (wordCount>= words.size){
+            stillSearching = false
+        }
+
+
+    }
+
+    val searchTime = System.currentTimeMillis() - start
+    println("Time to search was: ${searchTime/1000/60} minutes ${searchTime/1000%60} seconds")
+    println("Time in milliseconds: $searchTime")
     return result
 }
