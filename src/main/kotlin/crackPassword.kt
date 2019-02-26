@@ -26,22 +26,42 @@ fun main() {
 //    println(file.absolutePath)
 
     var foundIt = false
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 1)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 2)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 3)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 4)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 5)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 6)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 7)
-    if(!foundIt)
-        foundIt = searchMethodThreePlusOnePlus(file, 8)
+    if (!foundIt)
+        foundIt = searchMethodFourPlus(file)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 1)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 2)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 3)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 4)
+//    if (!foundIt) {
+//        println("Finished 4 digits")
+//        foundIt = searchMethodFourPlusOnePlus(file, 5)
+//    }
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 6)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 7)
+//    if (!foundIt)
+//        foundIt = searchMethodFourPlusOnePlus(file, 8)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 1)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 2)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 3)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 4)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 5)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 6)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 7)
+//    if(!foundIt)
+//        foundIt = searchMethodThreePlusOnePlus(file, 8)
 //    if(!foundIt)
 //        foundIt = searchMethodThree(file)
 //    if(!foundIt)
@@ -531,6 +551,167 @@ fun searchMethodFourPlus(file: File): Boolean{
                 println("Punctuation Success 3 words! Password $whichPassword is $guess")
             }
 
+            //new stuff here!!!!!!
+            //Try first two words with punctuation and third just concatenated
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3]) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //Concatenate 1 and 2 and add punctuation to word 3
+            checkUserPassword(words[wordCount] + words[wordCount2] + punctuation[punCount2]+ words[wordCount3]) -> {
+                guess = words[wordCount] + words[wordCount2] + punctuation[punCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1st punctution 2nd 3rd all caps
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize()) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 2 punc 3 all cap
+            checkUserPassword(words[wordCount].capitalize() + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3].capitalize()) -> {
+                guess = words[wordCount].capitalize() + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap 2 punc 3
+            checkUserPassword(words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2]+ words[wordCount3]) -> {
+                guess = words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 2 cap punc 3
+            checkUserPassword(words[wordCount] + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3]) -> {
+                guess = words[wordCount] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 2 punc 3 cap
+            checkUserPassword(words[wordCount] + words[wordCount2] + punctuation[punCount2]+ words[wordCount3].capitalize()) -> {
+                guess = words[wordCount] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap 2 cap punc 3
+            checkUserPassword(words[wordCount].capitalize() + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3]) -> {
+                guess = words[wordCount].capitalize() + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap 2 punc 3 cap
+            checkUserPassword(words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2]+ words[wordCount3].capitalize()) -> {
+                guess = words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 2 cap punc 3 cap
+            checkUserPassword(words[wordCount] + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3].capitalize()) -> {
+                guess = words[wordCount] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap punc 2 3
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3]) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 punc 2 cap 3
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3]) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 punc 2 3 cap
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize()) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap punc 2 cap 3
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3]) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3]
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 cap punc 2 3 cap
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize()) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
+            //1 punc 2 cap 3 cap
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize()) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize()
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1 Punctuation between first two words a success! Password $whichPassword is $guess")
+            }
+
             //Try 1st word capitlized and punctuation
             checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2]) -> {
                 guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2]
@@ -711,4 +892,201 @@ fun searchMethodThreePlusOnePlus (file: File, numDigets: Int): Boolean {
     println("Time to search was: ${searchTime/1000/60} minutes ${searchTime/1000%60} seconds")
     println("Time in milliseconds: $searchTime")
     return result
+}
+
+fun searchMethodFourPlusOnePlus(file: File, numDigets: Int): Boolean{
+    var result = false
+
+    val words = file.bufferedReader().readLines()
+
+    val start = System.currentTimeMillis()
+    var stillSearching = true
+    var numTests = 0
+    var wordCount = 0
+    var wordCount2 = 0
+    var wordCount3 = 0
+    var guess: String
+    var punCount1 = 0
+    var punCount2 = 0
+
+    val punctuation = "~!@#$%^&*()_-+={}[]:<>,./X".toCharArray()
+
+    val maxNum = 10.toDouble().pow(numDigets).toInt()
+    var a = 0
+
+    while (stillSearching && a<maxNum){
+
+//        println(words[wordCount] + words[wordCount2] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + words[wordCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets))
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets))
+
+
+        when{
+            //If at the end of the punction leave it out
+            'X' == punctuation[punCount1] -> {
+                if(checkUserPassword(words[wordCount] + words[wordCount2] + a.toString().leadingZeros(numDigets))){
+                    stillSearching = false
+                    result = true
+                    numTests+=1
+                    totalGuesses+=1
+                    println("No punctuation Success! Password $whichPassword is ${words[wordCount] + words[wordCount2] + a.toString().leadingZeros(numDigets)}")
+                }
+                if(checkUserPassword(words[wordCount] + words[wordCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets))){
+                    stillSearching = false
+                    result = true
+                    numTests+=1
+                    totalGuesses+=1
+                    println("No punctuation Success 3 words! Password $whichPassword is ${words[wordCount] + words[wordCount2] + a.toString().leadingZeros(numDigets)}")
+                }
+            }
+            //Try words and punctuation
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("Punctuation Success! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("Punctuation Success 3 words! Password $whichPassword is $guess")
+            }
+
+            //Try 1st word capitlized and punctuation
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1st word Cap Success! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1st word cap Success 3 words! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("2nd word cap Success 3 words! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3] + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1st and 2nd word cap Success 3 words! Password $whichPassword is $guess")
+            }
+
+            //Try last word capitalized and punctuation
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("last word Cap Success! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("last word cap Success 3 words! Password $whichPassword is $guess")
+            }
+            //Try both words capitalized and punctuation
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("Both words Cap Success! Password $whichPassword is $guess")
+            }
+
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("1st and last word cap Success 3 words! Password $whichPassword is $guess")
+            }
+
+            //all capitalized
+            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)) -> {
+                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize() + a.toString().leadingZeros(numDigets)
+                stillSearching = false
+                result = true
+                numTests+=1
+                totalGuesses+=1
+                println("all words cap Success 3 words! Password $whichPassword is $guess")
+            }
+        }
+        a+=1
+
+        if(a==maxNum){
+            wordCount+=1
+            a=0
+            if (wordCount >= words.size){
+                wordCount = 0
+                punCount1+=1
+                if (punCount1 >= punctuation.size){
+                    punCount1 = 0
+                    wordCount2+=1
+//                    println("Got to iterating next word!!")
+                    if (wordCount2 >= words.size){
+                        wordCount2 = 0
+                        punCount2+=1
+                        if (punCount2 >= punctuation.size){
+                            punCount2 = 0
+                            wordCount3+=1
+                            println("Iterated 3rd word")
+                            if (wordCount3 >= words.size){
+                                stillSearching = false
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+
+    }
+
+    val searchTime = System.currentTimeMillis() - start
+    println("Time to search was: ${searchTime/1000/60} minutes ${searchTime/1000%60} seconds")
+    println("Time in milliseconds: $searchTime")
+
+    return result
+
 }
