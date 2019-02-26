@@ -14,6 +14,7 @@ const val password3="f78f2477e949bee2d12a2c540fb6084f" //tigger found with metho
 const val password4="09408af74a7178e95b8ddd4e92ea4b0e" //Dragon+Hunter found with method 4
 const val password5="2034f6e32958647fdff75d265b455ebf" //secretpassword found with method 4 no punctuation
 const val password6="9b3af42d61cde121f40b96097fb77d3e"
+const val password7="a3f3b4438c84de938d81112329c09e43"
 var totalGuesses = 0
 
 //Change this value to use different passwords from above.
@@ -147,6 +148,7 @@ fun checkUserPassword(password: String): Boolean{
         4 -> password.md5() == password4
         5 -> password.md5() == password5
         6 -> password.md5() == password6
+        7 -> password.md5() == password7
         else -> false
 
     }
@@ -658,12 +660,16 @@ fun searchMethodThreePlusOnePlus (file: File, numDigets: Int): Boolean {
     var a = 0
 
     while (stillSearching && a< maxNum){
-        guess = words[wordCount] + a.toString().leadingZeros(numDigets)
-        println(guess)
+        guess = a.toString().leadingZeros(numDigets) + words[wordCount]
+//        println(guess)
+//        println(a.toString().leadingZeros(numDigets) + words[wordCount].capitalize())
+//        println(guess.toUpperCase())
+//        println(guess.camelCase())
+//        println(guess.reversed())
 
         when{
-            checkUserPassword(guess.capitalize()) -> {
-                println("Method 3 capitalize Success! Password $whichPassword is ${guess.capitalize()}")
+            checkUserPassword(a.toString().leadingZeros(numDigets) + words[wordCount].capitalize()) -> {
+                println("Method 3 capitalize Success! Password $whichPassword is ${a.toString().leadingZeros(numDigets) + words[wordCount].capitalize()}")
                 stillSearching = false
                 result = true
             }
