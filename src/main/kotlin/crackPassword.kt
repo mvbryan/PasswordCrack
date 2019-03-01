@@ -18,7 +18,7 @@ const val password7="a3f3b4438c84de938d81112329c09e43"
 var totalGuesses = 0
 
 //Change this value to use different passwords from above.
-const val whichPassword = 6
+const val whichPassword = 7
 
 fun main() {
 
@@ -514,34 +514,44 @@ fun searchMethodFourPlus(file: File): Boolean{
 
     while (stillSearching){
 
+//        println(words[wordCount] + words[wordCount2] + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3])
+//        println(words[wordCount] + words[wordCount2] + punctuation[punCount2]+ words[wordCount3])
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2]+ words[wordCount3])
+//        println(words[wordCount] + words[wordCount2] + punctuation[punCount2]+ words[wordCount3].capitalize())
+//        println(words[wordCount] + words[wordCount2] + punctuation[punCount2]+ words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3])
+//        println(words[wordCount].capitalize() + words[wordCount2] + punctuation[punCount2]+ words[wordCount3].capitalize())
+//        println(words[wordCount] + words[wordCount2].capitalize() + punctuation[punCount2]+ words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3])
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3])
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + words[wordCount3].capitalize())
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3])
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3])
+//        println(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize())
+//        println(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize() + punctuation[punCount2] + words[wordCount3].capitalize())
+
         when{
             //If at the end of the punction leave it out
             'X' == punctuation[punCount1] -> {
-                if(checkUserPassword(words[wordCount] + words[wordCount2])){
-                    stillSearching = false
-                    result = true
-                    numTests+=1
-                    totalGuesses+=1
-                    println("No punctuation Success! Password $whichPassword is ${words[wordCount] + words[wordCount2]}")
-                }
                 if(checkUserPassword(words[wordCount] + words[wordCount2] + words[wordCount3])){
                     stillSearching = false
                     result = true
                     numTests+=1
                     totalGuesses+=1
-                    println("No punctuation Success 3 words! Password $whichPassword is ${words[wordCount] + words[wordCount2]}")
+                    println("No punctuation Success 3 words! Password $whichPassword is ${words[wordCount] + words[wordCount2] + words[wordCount3]}")
                 }
             }
             //Try words and punctuation
-            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2]) -> {
-                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2]
-                stillSearching = false
-                result = true
-                numTests+=1
-                totalGuesses+=1
-                println("Punctuation Success! Password $whichPassword is $guess")
-            }
-
             checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3]) -> {
                 guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3]
                 stillSearching = false
@@ -713,15 +723,6 @@ fun searchMethodFourPlus(file: File): Boolean{
             }
 
             //Try 1st word capitlized and punctuation
-            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2]) -> {
-                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2]
-                stillSearching = false
-                result = true
-                numTests+=1
-                totalGuesses+=1
-                println("1st word Cap Success! Password $whichPassword is $guess")
-            }
-
             checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3]) -> {
                 guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3]
                 stillSearching = false
@@ -750,15 +751,6 @@ fun searchMethodFourPlus(file: File): Boolean{
             }
 
             //Try last word capitalized and punctuation
-            checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize()) -> {
-                guess = words[wordCount] + punctuation[punCount1] + words[wordCount2].capitalize()
-                stillSearching = false
-                result = true
-                numTests+=1
-                totalGuesses+=1
-                println("last word Cap Success! Password $whichPassword is $guess")
-            }
-
             checkUserPassword(words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()) -> {
                 guess = words[wordCount] + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()
                 stillSearching = false
@@ -768,15 +760,6 @@ fun searchMethodFourPlus(file: File): Boolean{
                 println("last word cap Success 3 words! Password $whichPassword is $guess")
             }
             //Try both words capitalized and punctuation
-            checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize()) -> {
-                guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2].capitalize()
-                stillSearching = false
-                result = true
-                numTests+=1
-                totalGuesses+=1
-                println("Both words Cap Success! Password $whichPassword is $guess")
-            }
-
             checkUserPassword(words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()) -> {
                 guess = words[wordCount].capitalize() + punctuation[punCount1] + words[wordCount2] + punctuation[punCount2] + words[wordCount3].capitalize()
                 stillSearching = false
@@ -809,6 +792,7 @@ fun searchMethodFourPlus(file: File): Boolean{
                     if (punCount2 >= punctuation.size){
                         punCount2 = 0
                         wordCount3+=1
+                        println("Word Count 3 is: $wordCount3")
                         if (wordCount3 >= words.size){
                             stillSearching = false
                         }
