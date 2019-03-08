@@ -18,7 +18,7 @@ const val password7="a3f3b4438c84de938d81112329c09e43"
 var totalGuesses = 0
 
 //Change this value to use different passwords from above.
-const val whichPassword = 6
+const val whichPassword = 7
 
 fun main() {
 
