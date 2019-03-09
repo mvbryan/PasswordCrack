@@ -9,12 +9,13 @@ Tying over night
 all words, first and last capitalized -- no luck
 all words, first and second capitalized -- no luck
 all words, middle word capitalized -- no luck
-just 1st word capitlaized
+just 1st word capitlaized -- no luck
+just last word capitalized -- victoria$travis)Ford
  */
 
 fun main() {
 
-    val file = File(ClassLoader.getSystemResource("passwords1.txt").file)
+    val file = File(ClassLoader.getSystemResource("passwords3.txt").file)
 
     if(searchMethodFourPlusOneFormat(file))
         println("FINNALLY FOUND IT!!!")
@@ -58,8 +59,8 @@ fun searchMethodFourPlusOneFormat(file:File): Boolean{
     while(stillSearching){
 //        println(words[wordCount]+punctuation[punCount] +words[wordCount2]+words[wordCount3])
 //        println((words[wordCount] + punctuation[punCount] + words[wordCount2] + words[wordCount3]).md5())
-           if( (words[wordCount] + punctuation[punCount] + words[wordCount2].toLowerCase() + punctuation[punCount2] + words[wordCount3].toLowerCase()).md5() == password7){
-               guess = words[wordCount] + punctuation[punCount] + words[wordCount2].toLowerCase() + punctuation[punCount2] + words[wordCount3].toLowerCase()
+           if( (words[wordCount].toLowerCase() + punctuation[punCount] + words[wordCount2].toLowerCase() + punctuation[punCount2] + words[wordCount3]).md5() == password7){
+               guess = words[wordCount].toLowerCase() + punctuation[punCount] + words[wordCount2].toLowerCase() + punctuation[punCount2] + words[wordCount3]
                println("FINALLY FOUND IT: $guess")
                stillSearching = false
                result = true

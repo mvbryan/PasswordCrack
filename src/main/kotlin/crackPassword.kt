@@ -14,7 +14,7 @@ const val password3="f78f2477e949bee2d12a2c540fb6084f" //tigger found with metho
 const val password4="09408af74a7178e95b8ddd4e92ea4b0e" //Dragon+Hunter found with method 4
 const val password5="2034f6e32958647fdff75d265b455ebf" //secretpassword found with method 4 no punctuation
 const val password6="9b3af42d61cde121f40b96097fb77d3e"
-const val password7="a3f3b4438c84de938d81112329c09e43"
+const val password7="a3f3b4438c84de938d81112329c09e43" // victoria$travis)Ford found with oneFormat.kt 
 var totalGuesses = 0
 
 //Change this value to use different passwords from above.
